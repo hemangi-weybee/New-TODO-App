@@ -43,6 +43,7 @@ const hideCompleted = document.getElementById('hideCompleted');
 filterBtn.addEventListener('click', () => {
     editTaskFlag = false;
     options.style.display = 'flex';
+    options.style.flexDirection = 'column';
 });
 
 showAll.addEventListener('click', () => {
@@ -189,7 +190,7 @@ btnAdd.addEventListener('click', function () {
 });
 
 btnSearch.addEventListener('click', function () {
-    inputBox.disabled = false;
+    // inputBox.disabled = false;
     inputBox.placeholder = 'Serach Task';
     editTaskFlag = false;
     activeBtn = 1;

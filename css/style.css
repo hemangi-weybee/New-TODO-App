@@ -224,11 +224,21 @@ section .container .completed-task .completed-task-list .list-row {
   flex-direction: column;
 }
 .more-options .filter-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 10px;
   padding: 10px;
   color: white;
   text-transform: uppercase;
   font-size: 20px;
+}
+.more-options .filter-title button {
+  background: none;
+  border: none;
+}
+.more-options .filter-title button img {
+  height: 10px;
 }
 .more-options select {
   padding: 10px;
@@ -238,6 +248,8 @@ section .container .completed-task .completed-task-list .list-row {
   margin: 10px 20px;
 }
 .more-options .selectTasks div {
+  display: flex;
+  justify-content: space-between;
   padding-bottom: 10px;
 }
 .more-options .selectTasks div input {
@@ -253,6 +265,50 @@ section .container .completed-task .completed-task-list .list-row {
   margin-right: 15px;
 }
 
+@media only screen and (max-width: 370px) {
+  section {
+    margin: auto;
+  }
+  section .header .inputbar input {
+    padding: 5px;
+  }
+  section .header .inputbar button img {
+    height: 15px;
+  }
+  section .container {
+    width: 100%;
+    margin: 10px auto;
+  }
+  section .container .comman-task {
+    width: 225px;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  section .container .comman-task .task-head {
+    height: 30px;
+    margin-top: 10px;
+    padding: 0px 5px;
+    align-items: center;
+  }
+  section .container .comman-task .task-head span {
+    font-size: 15px;
+    letter-spacing: 2px;
+  }
+  section .container .comman-task .task-list .list-row .task-details textarea {
+    width: 175px;
+  }
+
+  .more-options .filter-title {
+    font-size: 15px;
+  }
+  .more-options select {
+    padding: 5px;
+    margin: 10px;
+  }
+  .more-options .selectTasks {
+    margin: 5px 10px;
+  }
+}
 @media only screen and (min-width: 500px) {
   section .container {
     width: 100%;
@@ -262,6 +318,10 @@ section .container .completed-task .completed-task-list .list-row {
   }
   section .container .comman-task .task-list .list-row .task-details textarea {
     width: 340px;
+  }
+
+  .more-options .selectTasks div {
+    display: block;
   }
 }
 @media only screen and (min-width: 700px) {

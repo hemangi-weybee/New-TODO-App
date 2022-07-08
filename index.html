@@ -12,8 +12,8 @@
         <div class="header">
             <h1>TODO TASK</h1>
 
-            <div class="inputbar">
-                <input type="text" name="inputBox" id="inputBox" placeholder="Please select Add or Search to enable" disabled>
+            <div class="inputbar">  
+                <input type="text" name="inputBox" id="inputBox" placeholder="Please Select Add Option" disabled>
                 <button class="add"><img src="images/add.svg" alt="Add Task"></button>
                 <button class="search"><img src="images/search.svg" alt="Search" ></button>
                 <button id="filter-opt"><img src="images/filter.svg" alt="Filter Tasks"></button>
@@ -21,7 +21,7 @@
 
             <div class="more-options">
                 
-                <div class="filter-title">Filter</div>
+                <div class="filter-title"><span>Filter</span><button class="filter" id="filter-cancel"><img src="images/exit.svg" alt=""></button></div>
 
                 <select name="action" id="action">
                     <option value="null" selected disabled>Action</option>
@@ -40,7 +40,6 @@
 
                 <div class="selectTasks">
                     <div><button class="filter" id="filter-done">Done</button>
-                        <button class="filter" id="filter-cancel">Cancel</button>
                         <button class="filter" id="filter-reset">Reset</button>
                     </div>
                 </div>
