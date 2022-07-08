@@ -94,6 +94,7 @@ section .container .comman-task .task-head {
   height: 30px;
   margin-top: 10px;
   padding: 0px 15px;
+  align-items: center;
 }
 section .container .comman-task .task-head span {
   text-transform: uppercase;
