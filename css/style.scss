@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
+
 :root {
     --all-task : #cdbdf4;
     --active-task : #bdf4cd;
@@ -16,7 +18,7 @@ section{
         h1 {
             color: var(--title-color);
             text-align: center;
-            font-family: Segoe Script;
+            font-family: 'Montserrat Alternates', sans-serif;
             font-size: 30px;
         }
 
