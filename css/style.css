@@ -1,0 +1,359 @@
+:root {
+  --all-task: #cdbdf4;
+  --active-task: #bdf4cd;
+  --completed-task: #f4cdbd;
+  --title-color: #66447f;
+  --wordlen-color: #808080;
+  --active-btn-color: #89bcaf;
+}
+
+section {
+  width: 90%;
+  margin: auto;
+  font-family: Calibri;
+}
+section .header h1 {
+  color: var(--title-color);
+  text-align: center;
+  font-family: Segoe Script;
+  font-size: 30px;
+}
+section .header .inputbar {
+  display: flex;
+  justify-content: center;
+}
+section .header .inputbar input {
+  margin: 5px;
+  width: 60%;
+  height: 20px;
+  border: 1px solid var(--title-color);
+  padding: 10px;
+  border-radius: 15px;
+}
+section .header .inputbar input:focus {
+  outline-color: var(--title-color) !important;
+}
+section .header .inputbar .active-btn {
+  border: 1px solid var(--active-btn-color);
+  background-color: var(--active-btn-color);
+}
+section .header .inputbar button {
+  background-color: var(--title-color);
+  border: 1px solid var(--title-color);
+  padding: 5px 8px;
+  border-radius: 20px;
+  margin: 5px;
+  cursor: pointer;
+}
+section .header .inputbar button img {
+  height: 25px;
+}
+section .header .more-options {
+  display: none;
+}
+section .header .color-guide {
+  margin: 15px 0px;
+  display: flex;
+  justify-content: space-around;
+}
+section .header .color-guide .colorbox {
+  padding: 0px 10px;
+  margin: 2px;
+  border-radius: 50%;
+  background-color: red;
+}
+section .header .color-guide .all-color {
+  background-color: var(--all-task);
+}
+section .header .color-guide .active-color {
+  background-color: var(--active-task);
+}
+section .header .color-guide .completed-color {
+  background-color: var(--completed-task);
+}
+section .container {
+  width: 90%;
+  margin: 10px auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+section .container .comman-task {
+  width: 300px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+section .container .comman-task .task-head {
+  display: flex;
+  justify-content: space-between;
+  height: 30px;
+  margin-top: 10px;
+  padding: 0px 15px;
+}
+section .container .comman-task .task-head span {
+  text-transform: uppercase;
+  font-size: 20px;
+  letter-spacing: 5px;
+  font-weight: bolder;
+}
+section .container .comman-task .task-head button {
+  background: none;
+  border: none;
+}
+section .container .comman-task .task-head button img {
+  height: 15px;
+}
+section .container .comman-task .task-head #showAll {
+  display: none;
+}
+section .container .comman-task .task-head #showActive {
+  display: none;
+}
+section .container .comman-task .task-head #showCompleted {
+  display: none;
+}
+section .container .comman-task .task-list {
+  margin: 5px 0px;
+}
+section .container .comman-task .task-list .list-row {
+  margin: 5px;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-color: var(--active-task);
+}
+section .container .comman-task .task-list .list-row .task-title {
+  margin: 5px 0px;
+}
+section .container .comman-task .task-list .list-row .task-desc textarea {
+  padding: 5px;
+  resize: none;
+  width: 275px;
+}
+section .container .comman-task .task-list .list-row .data-length {
+  font-size: 15px;
+  text-align: right;
+  color: var(--wordlen-color);
+}
+section .container .comman-task .task-list .list-row .list-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  align-items: center;
+}
+section .container .comman-task .task-list .list-row .list-bottom .task-activation .switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 15px;
+}
+section .container .comman-task .task-list .list-row .list-bottom .task-activation .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+section .container .comman-task .task-list .list-row .list-bottom .task-activation .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--wordlen-color);
+  border-radius: 20px;
+}
+section .container .comman-task .task-list .list-row .list-bottom .task-activation .slider:before {
+  position: absolute;
+  content: "";
+  height: 7px;
+  width: 7px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  border-radius: 10px;
+}
+section .container .comman-task .task-list .list-row .list-bottom .task-activation input:checked + .slider {
+  background-color: var(--title-color);
+}
+section .container .comman-task .task-list .list-row .list-bottom .task-activation input:checked + .slider:before {
+  transform: translateX(12px);
+}
+section .container .comman-task .task-list .list-row .list-bottom .item-controls button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+section .container .comman-task .task-list .list-row .list-bottom .item-controls button img {
+  height: 15px;
+}
+section .container .all-task {
+  border: 1px solid var(--all-task);
+  background-color: var(--all-task);
+}
+section .container .all-task .all-task-list .list-row {
+  background-color: var(--all-task);
+}
+section .container .active-task {
+  border: 1px solid var(--active-task);
+  background-color: var(--active-task);
+}
+section .container .active-task .active-task-list .list-row {
+  background-color: var(--active-task);
+}
+section .container .completed-task {
+  border: 1px solid var(--completed-task);
+  background-color: var(--completed-task);
+}
+section .container .completed-task .completed-task-list .list-row {
+  background-color: var(--completed-task);
+}
+
+.more-options {
+  position: fixed;
+  z-index: 999;
+  width: 70%;
+  right: 0;
+  top: 0;
+  background: var(--title-color);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.more-options .filter-title {
+  margin: 10px;
+  padding: 10px;
+  color: white;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+.more-options select {
+  padding: 10px;
+  margin: 20px;
+}
+.more-options .selectTasks {
+  margin: 10px 20px;
+}
+.more-options .selectTasks div {
+  padding-bottom: 10px;
+}
+.more-options .selectTasks div input {
+  display: none;
+  margin-right: 15px;
+}
+.more-options .selectTasks div span {
+  display: none;
+  color: white;
+}
+.more-options .selectTasks div button {
+  padding: 5px 20px;
+  margin-right: 15px;
+}
+
+@media only screen and (min-width: 500px) {
+  section .container {
+    width: 100%;
+  }
+  section .container .comman-task {
+    width: 375px;
+  }
+  section .container .comman-task .task-list .list-row .task-details textarea {
+    width: 340px;
+  }
+}
+@media only screen and (min-width: 700px) {
+  .more-options {
+    width: 50%;
+  }
+
+  section .container {
+    width: 100%;
+  }
+  section .container .comman-task {
+    width: 475px;
+  }
+  section .container .comman-task .task-list .list-row .task-details textarea {
+    width: 440px;
+  }
+}
+@media only screen and (min-width: 875px) {
+  .more-options {
+    width: 40%;
+  }
+
+  section .container {
+    width: 100%;
+  }
+  section .container .comman-task {
+    width: 675px;
+  }
+  section .container .comman-task .task-list .list-row .task-details textarea {
+    width: 640px;
+  }
+}
+@media only screen and (min-width: 1080px) {
+  .more-options {
+    width: 30%;
+  }
+
+  section .container {
+    width: 100%;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  section .container .comman-task {
+    width: 275px;
+  }
+  section .container .comman-task .task-head span {
+    text-transform: uppercase;
+    font-size: 18px;
+  }
+  section .container .comman-task .task-list .list-row .task-details textarea {
+    width: 240px;
+  }
+  section .container .active-task {
+    display: block;
+  }
+  section .container .completed-task {
+    display: block;
+  }
+}
+@media only screen and (min-width: 1350px) {
+  .more-options {
+    width: 20%;
+  }
+
+  section .container {
+    width: 100%;
+    flex-direction: row;
+  }
+  section .container .comman-task {
+    width: 350px;
+  }
+  section .container .comman-task .task-head span {
+    text-transform: uppercase;
+    font-size: 25px;
+  }
+  section .container .comman-task .task-list .list-row .task-details textarea {
+    width: 315px;
+  }
+}
+@media only screen and (min-width: 1700px) {
+  .more-options {
+    width: 20%;
+  }
+
+  section .container {
+    width: 100%;
+    flex-direction: row;
+  }
+  section .container .comman-task {
+    width: 450px;
+  }
+  section .container .comman-task .task-list .list-row .task-details textarea {
+    width: 415px;
+  }
+}/*# sourceMappingURL=style.css.map */

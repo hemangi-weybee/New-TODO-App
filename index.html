@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO Task</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <section>
+        <div class="header">
+            <h1>TODO TASK</h1>
+
+            <div class="inputbar">
+                <input type="text" name="inputBox" id="inputBox" placeholder="Please select Add or Search to enable" disabled>
+                <button class="add"><img src="images/add.svg" alt="Add Task"></button>
+                <button class="search"><img src="images/search.svg" alt="Search" ></button>
+                <button id="filter-opt"><img src="images/filter.svg" alt="Filter Tasks"></button>
+            </div>
+
+            <div class="more-options">
+                
+                <div class="filter-title">Filter</div>
+
+                <select name="action" id="action">
+                    <option value="null" selected disabled>Action</option>
+                    <option value="1">Delete Selected</option>
+                    <option value="2">Select All</option>
+                    <option value="3">Unselect All</option>
+                </select>
+
+                <select name="sort" id="sort">
+                    <option value="null" selected disabled>Sort</option>
+                    <option value="1">A to Z</option>
+                    <option value="2">Z to A</option>
+                    <option value="3">Oldest</option>
+                    <option value="4">Newest</option>
+                </select>
+
+                <div class="selectTasks">
+                    <div><input type="checkbox" name="all" value="1" id="all" checked><span>All</span></div>
+                    <div><input type="checkbox" name="active" value="2" id="active"><span>Active</span></div>
+                    <div><input type="checkbox" name="completed" value="3" id="completed" ><span>Completed</span></div>
+                    <div><button class="filter" id="filter-done">Done</button>
+                        <button class="filter" id="filter-cancel">Cancel</button>
+                        <button class="filter" id="filter-reset">Reset</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="color-guide">
+                <div><span class="colorbox all-color"></span>All</div>
+                <div><span class="colorbox active-color"></span>Active</div>
+                <div><span class="colorbox completed-color"></span>Completed</div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="all-task comman-task">
+                <div class="task-head">
+                    <span>All Tasks</span>
+                    <button id="showAll"><img src="images/show.svg" alt=""></button>
+                    <button id="hideAll"><img src="images/hide.svg" alt=""></button>
+                </div>
+                <div class="all-task-list task-list">
+                    <div class="list-row">
+                        <div class="task-details"> 
+                            <div class="task-title">
+                                <!-- Task 1 -->
+                            </div>
+                            <div class="task-desc">
+                                <textarea name="editTask" id="editTask"  rows="3">This is the TODO task challenge. change the design and implement all the functionalities</textarea>
+                            </div>
+                            <div class="data-length"> 5/200 </div>   
+                        </div>
+                        <div class="list-bottom">
+                            <div class="task-activation">
+                                <label class="switch">
+                                    <input type="checkbox" name="activechk" id="activechk" onclick="">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="item-controls">
+                                <button onclick=""><img src="images/edit.svg" alt="Edit" ></button>
+                                <button onclick=""><img src="images/del.svg" alt="Delete" ></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="active-task comman-task">
+                <div class="task-head">
+                    <span>Active Tasks</span>
+                    <button id="showActive"><img src="images/show.svg" alt=""></button>
+                    <button id="hideActive"><img src="images/hide.svg" alt=""></button>
+                </div>
+                <div class="active-task-list task-list">
+                    <div class="list-row">
+                        <div class="task-details"> 
+                            <div class="task-title">
+                                <!-- Task 1 -->
+                            </div>
+                            <div class="task-desc">
+                                <textarea onkeypress="" name="editTask" id="editTask"  rows="3" wrap="hard">This is the TODO task challenge. change the design and implement all the functionalities</textarea>
+                            </div>
+                            <div class="data-length"> 5/200 </div>   
+                        </div>
+                        <div class="list-bottom">
+                            <div class="task-activation">
+                                <label class="switch">
+                                    <input type="checkbox" name="activechk" id="activechk" onclick="">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="item-controls">
+                                <button value=""><img src="images/edit.svg" alt="Search" ></button>
+                                <button value=""><img src="images/del.svg" alt="Search" ></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="completed-task  comman-task">
+                <div class="task-head">
+                    <span>Completed Tasks</span>
+                    <button id="showCompleted"><img src="images/show.svg" alt=""></button>
+                    <button id="hideCompleted"><img src="images/hide.svg" alt=""></button>
+                </div>
+                <div class="completed-task-list task-list">
+                    <div class="list-row">
+                        <div class="task-details"> 
+                            <div class="task-title">
+                                <!-- Task 1 -->
+                            </div>
+                            <div class="task-desc">
+                                <textarea name="editTask" id="editTask"  rows="3" wrap="hard">This is the TODO task challenge. change the design and implement all the functionalities</textarea>
+                            </div>
+                            <div class="data-length"> 5/200 </div>   
+                        </div>
+                        <div class="list-bottom">
+                            <div class="task-activation">
+                                <!-- <label class="switch">
+                                    <input type="checkbox" name="activechk" id="activechk" onclick="">
+                                    <span class="slider"></span>
+                                </label> -->
+                            </div>
+                            <div class="item-controls">
+                                <button value=""><img src="images/edit.svg" alt="Search" ></button>
+                                <button value=""><img src="images/del.svg" alt="Search" ></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>

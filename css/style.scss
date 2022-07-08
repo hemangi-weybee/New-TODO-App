@@ -1,0 +1,481 @@
+:root {
+    --all-task : #cdbdf4;
+    --active-task : #bdf4cd;
+    --completed-task : #f4cdbd;
+    --title-color : #66447f;
+    --wordlen-color : #808080;
+    --active-btn-color : #89bcaf;
+}
+
+section{
+    width: 90%;
+    margin: auto;
+    font-family: Calibri;
+
+    .header{
+        h1 {
+            color: var(--title-color);
+            text-align: center;
+            font-family: Segoe Script;
+            font-size: 30px;
+        }
+
+        .inputbar {
+            display: flex;
+            justify-content: center;
+
+            input {
+                margin: 5px;
+                width: 60%;
+                height: 20px;
+                border: 1px solid var(--title-color);
+                padding: 10px;
+                border-radius: 15px;
+                &:focus {
+                    outline-color : var(--title-color) !important;
+                }
+            }
+
+            .active-btn {
+                border: 1px solid var(--active-btn-color);
+                background-color: var(--active-btn-color);
+            }
+
+            button {
+                background-color: var(--title-color);
+                border: 1px solid var(--title-color);
+                padding: 5px 8px;
+                border-radius: 20px;
+                margin: 5px;
+                cursor: pointer;
+
+                img {
+                    height: 25px;
+                }
+            }
+        }
+
+        .more-options {
+            display: none;
+        }
+
+        .color-guide {
+            margin: 15px 0px;
+            display: flex;
+            justify-content: space-around;
+            
+            .colorbox {
+                padding: 0px 10px;
+                margin: 2px;
+                border-radius: 50%;
+                background-color: red;
+            }
+
+            .all-color {
+                background-color: var(--all-task);
+            }
+
+            .active-color {
+                background-color: var(--active-task);
+            }
+
+            .completed-color {
+                background-color: var(--completed-task);
+            }
+        }
+    }
+    
+    .container{
+        width: 90%;
+        margin: 10px auto;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: column;
+
+        .comman-task {
+            width: 300px;
+            border-radius: 25px;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            margin-bottom: 10px;
+
+            .task-head{
+                display: flex;
+                justify-content: space-between;
+                height: 30px;
+                margin-top: 10px;
+                padding: 0px 15px;
+                span {
+                    text-transform: uppercase;
+                    font-size: 20px;
+                    letter-spacing: 5px;
+                    font-weight: bolder;
+                }
+                button {
+                    background: none;
+                    border: none;
+                    img {
+                        height: 15px;
+                    }
+                }
+                #showAll {
+                    display: none;
+                }
+                #showActive {
+                    display: none;
+                }
+                #showCompleted {
+                    display: none;
+                }
+            }
+
+            .task-list {
+                margin: 5px 0px;
+                .list-row {
+                    margin: 5px;
+                    padding: 5px;
+                    margin-bottom: 10px;
+                    border-radius: 10px;
+                    background-color: var(--active-task);
+
+
+                    .task-title {
+                        margin: 5px 0px;
+                    }
+
+                    .task-desc {
+                        textarea {
+                            padding: 5px;
+                            resize: none;
+                            width: 275px;
+                        }
+                    }
+                    .data-length {
+                        font-size: 15px;
+                        text-align: right;
+                        color: var(--wordlen-color);
+                    }
+
+                    .list-bottom {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-top: 10px;
+                        align-items: center;
+                        .task-activation {
+                            .switch {
+                                position: relative;
+                                display: inline-block;
+                                width: 30px;
+                                height: 15px;
+                              }
+                              
+                              .switch input { 
+                                opacity: 0;
+                                width: 0;
+                                height: 0;
+                              }
+                              
+                              .slider {
+                                position: absolute;
+                                cursor: pointer;
+                                top: 0;
+                                left: 0;
+                                right: 0;
+                                bottom: 0;
+                                background-color: var(--wordlen-color);  
+                                border-radius: 20px;
+                              }
+                              
+                              .slider:before {
+                                position: absolute;
+                                content: "";
+                                height: 7px;
+                                width: 7px;
+                                left: 4px;
+                                bottom: 4px;
+                                background-color: white;
+                                border-radius: 10px;
+                              }
+                              
+                              input:checked + .slider {
+                                background-color: var(--title-color);
+                              }
+                              
+                              input:checked + .slider:before {
+                                transform: translateX(12px);
+                              }
+                        }
+
+                        .item-controls { 
+                            button {
+                                cursor: pointer;
+                                border: none;
+                                background: none;
+    
+                                img {
+                                    height: 15px;
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+
+        .all-task {
+            border: 1px solid var(--all-task);
+            background-color: var(--all-task);
+
+            .all-task-list {
+                .list-row {
+                    background-color: var(--all-task);
+                }
+            }
+        }
+        .active-task {
+            // display: none;
+            border: 1px solid var(--active-task);
+            background-color: var(--active-task);
+
+            .active-task-list {
+                .list-row {
+                    background-color: var(--active-task);
+                }
+            }
+        }
+        .completed-task {
+            // display: none;
+            border: 1px solid var(--completed-task);
+            background-color: var(--completed-task);
+
+            .completed-task-list {
+                .list-row {
+                    background-color: var(--completed-task);
+                }
+            }
+        }
+    }
+}
+
+.more-options {
+    position: fixed;
+    z-index: 999;
+    width: 70%;
+    right: 0;
+    top: 0;
+    background: var(--title-color);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .filter-title{
+        margin: 10px;
+        padding: 10px;
+        color: white;
+        text-transform: uppercase;
+        font-size: 20px;
+    }
+
+    select {
+        padding: 10px;
+        margin: 20px;
+    }
+
+    .selectTasks {
+        margin: 10px 20px;
+
+        div {
+            padding-bottom: 10px;
+
+            input {
+                display: none;
+                margin-right: 15px;
+            }
+
+            span {
+                display: none;
+                color: white;
+            }
+
+            button {
+                // margin-top: 20px;
+                padding: 5px 20px;    
+                margin-right: 15px;        
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 500px) {
+    
+    section {
+        .container {
+            width: 100%;
+
+            .comman-task {
+                width: 375px;
+                .task-list {
+                    .list-row {
+                        .task-details {
+                            textarea {
+                                width: 340px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    .more-options {
+        width: 50%;
+    }
+    section {
+        .container {
+            width: 100%;
+
+            .comman-task {
+                width: 475px;
+                .task-list {
+                    .list-row {
+                        .task-details {
+                            textarea {
+                                width: 440px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 875px) {
+    .more-options {
+        width: 40%;
+    }
+    section {
+        .container {
+            width: 100%;
+
+            .comman-task {
+                width: 675px;
+                .task-list {
+                    .list-row {
+                        .task-details {
+                            textarea {
+                                width: 640px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1080px) {
+    .more-options {
+        width: 30%;
+    }
+    section {
+        .container {
+            width: 100%;
+            flex-direction: row;
+            align-items: flex-start;
+
+            .comman-task {
+                width: 275px;
+
+                .task-head {
+                    span {
+                        text-transform: uppercase;
+                        font-size: 18px;
+                    }
+                }
+
+                .task-list {
+                    .list-row {
+                        .task-details {
+                            textarea {
+                                width: 240px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .active-task {
+                display: block;
+            }
+
+            .completed-task {
+                display: block;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1350px) {
+    .more-options {
+        width: 20%;
+    }
+    section {
+        .container {
+            width: 100%;
+            flex-direction: row;
+
+            .comman-task {
+                width: 350px;
+
+                .task-head {
+                    span {
+                        text-transform: uppercase;
+                        font-size: 25px;
+                    }
+                }
+
+                .task-list {
+                    .list-row {
+                        .task-details {
+                            textarea {
+                                width: 315px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1700px) {
+    .more-options {
+        width: 20%;
+    }
+    section {
+        .container {
+            width: 100%;
+            flex-direction: row;
+
+            .comman-task {
+                width: 450px;
+
+                .task-list {
+                    .list-row {
+                        .task-details {
+                            textarea {
+                                width: 415px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
