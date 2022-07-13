@@ -1,35 +1,24 @@
 'use strict';
 
+//js main components
 const containerAllTask = document.querySelector('.all-task-list');
 const containerActiveTask = document.querySelector('.active-task-list');
 const containerCompletedTask = document.querySelector('.completed-task-list');
 const inputBar = document.querySelector('.inputBar');
-const inputBox = document.getElementById('inputBox');
 const btnAdd = document.querySelector('.add');
 const btnSearch = document.querySelector('.search');
+const inputBox = document.getElementById('inputBox');
 const selectAction = document.getElementById('action');
 const selectSort = document.getElementById('sort');
 const chkAll = document.getElementById('all');
 const chkActive = document.getElementById('active');
 const chkCompleted = document.getElementById('completed');
 const box = document.getElementsByName('editTask');
-const tasks = [];
-let generateId = 0;
-let activeBtn;
-let editTaskFlag = false;
-let editTaskID = 0;
-let editFromBox;
-let currentOpt = 0;
-let sortOpt = 0;
-let selectOpt = 0;
+const lblDataLength = document.getElementsByClassName('data-length');
 
-//colors
-const allTaskColor = '#cdbdf4';
-const activeTaskColor = '#bdf4cd';
-const completedTaskColor = '#f4cdbd';
-   
-const filterBtn = document.getElementById('filter-opt');
+//design components
 const options = document.querySelector('.more-options');
+const filterBtn = document.getElementById('filter-opt');
 const filterBtnDone = document.getElementById('filter-done');
 const filterBtnCancel = document.getElementById('filter-cancel');
 const filterBtnReset = document.getElementById('filter-reset');
@@ -39,6 +28,23 @@ const showActive = document.getElementById('showActive');
 const hideActive = document.getElementById('hideActive');
 const showCompleted = document.getElementById('showCompleted');
 const hideCompleted = document.getElementById('hideCompleted');
+
+//colors
+const allTaskColor = '#cdbdf4';
+const activeTaskColor = '#bdf4cd';
+const completedTaskColor = '#f4cdbd';
+
+//logic components
+const tasks = [];
+let generateId = 0;
+let activeBtn;
+let editTaskFlag = false;
+let editTaskID = 0;
+let editFromBox;
+let currentOpt = 0;
+let sortOpt = 0;
+let selectOpt = 0;
+  
 
 filterBtn.addEventListener('click', () => {
     editTaskFlag = false;
@@ -53,6 +59,7 @@ showAll.addEventListener('click', () => {
     hideAll.style.display = 'block';
     showAll.style.display = 'none';
 });
+
 hideAll.addEventListener('click', () => {
     editTaskFlag = false;
     containerAllTask.style.display = 'none';
@@ -90,32 +97,36 @@ hideCompleted.addEventListener('click', () => {
     showCompleted.style.display = 'block';
 }); 
 
-
 const displayTasks = function (tasks) {
     containerAllTask.innerHTML = containerActiveTask.innerHTML = containerCompletedTask.innerHTML = '';
+
     if (tasks.length === 0) {
-        const html = `
+        const msg = `
         <div class="list-row">
             <div class="noData">
                 No Task !
             </div>
         </div>`;
-        containerAllTask.insertAdjacentHTML('afterbegin', html);
-        containerActiveTask.insertAdjacentHTML('afterbegin', html);
-        containerCompletedTask.insertAdjacentHTML('afterbegin', html);
+        containerAllTask.insertAdjacentHTML('beforeend', msg);
+        containerActiveTask.insertAdjacentHTML('beforeend', msg);
+        containerCompletedTask.insertAdjacentHTML('beforeend', msg);
     }
+    
     else {
+        if(tasks.filter(t => t.completed === true).length === 0)  containerCompletedTask.insertAdjacentHTML('beforeend', msg);
+        if(tasks.filter(t => t.completed === false).length === 0)  containerActiveTask.insertAdjacentHTML('beforeend', msg);
+
         tasks.forEach((task) => {
-            const html = `
+            const allTask = `
                     <div class="list-row" style="background-color: ${ task.completed? completedTaskColor : activeTaskColor}">
                         <div class="task-details"> 
                             <div class="task-title">
                             </div>
                             <div class="task-desc">
                                 ${editTaskFlag && editTaskID === task.id ? 
-                                `<textarea maxlength ="200" onkeypress="editing(event)" name="editTask" id="editTask" rows="3">${task.title}</textarea>
+                                `<textarea onkeyup="getChar(0)" onblur="editDone()" maxlength ="200" onkeypress="editing(event)" name="editTask" id="editTask" rows="3">${task.title}</textarea>
                                 </div>
-                                <div class="data-length"> 5/200 </div>`
+                                <div class="data-length"> ${task.title.slice().length}/200 </div>`
                                 : task.title + '</div>'
                                 }                           
                             
@@ -134,16 +145,16 @@ const displayTasks = function (tasks) {
                         </div>
                     </div>`;
 
-                    const html1 = `
+                    const specificTask = `
                     <div class="list-row" style="background-color: ${ task.completed? completedTaskColor : activeTaskColor}">
                         <div class="task-details"> 
                             <div class="task-title">
                             </div>
                             <div class="task-desc">
                                 ${editTaskFlag && editTaskID === task.id ? 
-                                `<textarea maxlength ="200" onkeypress="editing(event)" name="editTask" id="editTask" rows="3">${task.title}</textarea>
+                                `<textarea onkeyup="getChar(1)" onblur="editDone()" maxlength ="200" onkeypress="editing(event)" name="editTask" id="editTask" rows="3">${task.title}</textarea>
                                 </div>
-                                <div class="data-length"> 5/200 </div>`
+                                <div class="data-length"> ${task.title.slice().length}/200 </div>`
                                 : task.title + '</div>'
                                 }                           
                             
@@ -161,11 +172,14 @@ const displayTasks = function (tasks) {
                             </div>
                         </div>
                     </div>`;
-            containerAllTask.insertAdjacentHTML('beforeend', html);
-            task.completed ? containerCompletedTask.insertAdjacentHTML('beforeend', html1) 
-            : containerActiveTask.insertAdjacentHTML('beforeend', html1);
+            containerAllTask.insertAdjacentHTML('beforeend', allTask);
+            task.completed ? containerCompletedTask.insertAdjacentHTML('beforeend', specificTask) 
+            : containerActiveTask.insertAdjacentHTML('beforeend', specificTask);
+            
         });        
     }
+
+    
 };
 
 displayTasks(tasks);
@@ -235,23 +249,32 @@ const editTask = function(taskID,i,disable) {
     displayTasks(tasks);
     editFromBox = i;
     box[i].disabled = false;
+    lblDataLength[disable].style.visibility = 'hidden';
     box[disable].disabled = true;
 };
 
 const editing = function(event){
     if (event.key === "Enter") {
-        const index = tasks.findIndex(t => t.id === editTaskID);
-        let data;
-        if(editFromBox == 0) {
-            data = box[0].value;
-        } else {
-            data = box[1].value;
-        }
-        tasks[index].title = data;
-        editTaskFlag = false;
-        editTaskID = 0;
-        displayTasks(tasks);
+        editDone();
     }
+}
+
+const editDone = function() {
+    const index = tasks.findIndex(t => t.id === editTaskID);
+
+    if(tasks[index].title !== 'undefined'){
+        tasks[index].title = editFromBox === 0 ? box[0].value : box[1].value;
+    } else {
+        tasks[index].title = editFromBox === 0 ? box[0].value : box[1].value;
+    }
+    editTaskFlag = false;
+    editTaskID = 0;
+    displayTasks(tasks);
+}
+
+const getChar = function (i) {
+    box[i].value.length;
+    lblDataLength[i].innerHTML = `${box[i].value.length}/200`;
 }
 
 

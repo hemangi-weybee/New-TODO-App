@@ -5,7 +5,7 @@
   --completed-task: #f4cdbd;
   --title-color: #66447f;
   --wordlen-color: #808080;
-  --active-btn-color: #89bcaf;
+  --active-btn-color: #91d2ed;
 }
 
 section {
@@ -299,7 +299,6 @@ section .container .completed-task .completed-task-list .list-row {
   section .container .comman-task .task-list .list-row .task-details textarea {
     width: 175px;
   }
-
   .more-options .filter-title {
     font-size: 15px;
   }
@@ -321,7 +320,6 @@ section .container .completed-task .completed-task-list .list-row {
   section .container .comman-task .task-list .list-row .task-details textarea {
     width: 340px;
   }
-
   .more-options .selectTasks div {
     display: block;
   }
@@ -330,7 +328,6 @@ section .container .completed-task .completed-task-list .list-row {
   .more-options {
     width: 50%;
   }
-
   section .container {
     width: 100%;
   }
@@ -345,7 +342,6 @@ section .container .completed-task .completed-task-list .list-row {
   .more-options {
     width: 40%;
   }
-
   section .container {
     width: 100%;
   }
@@ -360,7 +356,6 @@ section .container .completed-task .completed-task-list .list-row {
   .more-options {
     width: 30%;
   }
-
   section .container {
     width: 100%;
     flex-direction: row;
@@ -387,7 +382,6 @@ section .container .completed-task .completed-task-list .list-row {
   .more-options {
     width: 20%;
   }
-
   section .container {
     width: 100%;
     flex-direction: row;
@@ -407,7 +401,6 @@ section .container .completed-task .completed-task-list .list-row {
   .more-options {
     width: 20%;
   }
-
   section .container {
     width: 100%;
     flex-direction: row;
