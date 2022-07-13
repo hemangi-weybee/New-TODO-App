@@ -100,13 +100,13 @@ hideCompleted.addEventListener('click', () => {
 const displayTasks = function (tasks) {
     containerAllTask.innerHTML = containerActiveTask.innerHTML = containerCompletedTask.innerHTML = '';
 
-    if (tasks.length === 0) {
-        const msg = `
+    const msg = `
         <div class="list-row">
             <div class="noData">
                 No Task !
             </div>
         </div>`;
+    if (tasks.length === 0) {
         containerAllTask.insertAdjacentHTML('beforeend', msg);
         containerActiveTask.insertAdjacentHTML('beforeend', msg);
         containerCompletedTask.insertAdjacentHTML('beforeend', msg);
