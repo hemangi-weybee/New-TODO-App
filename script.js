@@ -37,14 +37,15 @@ const completedTaskColor = '#f4cdbd';
 //logic components
 const tasks = [];
 let generateId = 0;
-let activeBtn;
+let activeBtn;   //activeBtn (value 0 => add new task) (value 1 => search task) 
 let editTaskFlag = false;
 let editTaskID = 0;
 let editFromBox;
 let currentOpt = 0;
 let sortOpt = 0;
 let selectOpt = 0;
-  
+let searchTasks;
+
 
 filterBtn.addEventListener('click', () => {
     editTaskFlag = false;
@@ -65,7 +66,7 @@ hideAll.addEventListener('click', () => {
     containerAllTask.style.display = 'none';
     hideAll.style.display = 'none';
     showAll.style.display = 'block';
-});  
+});
 
 showActive.addEventListener('click', () => {
     editTaskFlag = false;
@@ -80,7 +81,7 @@ hideActive.addEventListener('click', () => {
     containerActiveTask.style.display = 'none';
     hideActive.style.display = 'none';
     showActive.style.display = 'block';
-}); 
+});
 
 showCompleted.addEventListener('click', () => {
     editTaskFlag = false;
@@ -95,7 +96,7 @@ hideCompleted.addEventListener('click', () => {
     containerCompletedTask.style.display = 'none';
     hideCompleted.style.display = 'none';
     showCompleted.style.display = 'block';
-}); 
+});
 
 const displayTasks = function (tasks) {
     containerAllTask.innerHTML = containerActiveTask.innerHTML = containerCompletedTask.innerHTML = '';
@@ -111,30 +112,30 @@ const displayTasks = function (tasks) {
         containerActiveTask.insertAdjacentHTML('beforeend', msg);
         containerCompletedTask.insertAdjacentHTML('beforeend', msg);
     }
-    
+
     else {
-        if(tasks.filter(t => t.completed === true).length === 0)  containerCompletedTask.insertAdjacentHTML('beforeend', msg);
-        if(tasks.filter(t => t.completed === false).length === 0)  containerActiveTask.insertAdjacentHTML('beforeend', msg);
+        if (tasks.filter(t => t.completed === true).length === 0) containerCompletedTask.insertAdjacentHTML('beforeend', msg);
+        if (tasks.filter(t => t.completed === false).length === 0) containerActiveTask.insertAdjacentHTML('beforeend', msg);
 
         tasks.forEach((task) => {
             const allTask = `
-                    <div class="list-row" style="background-color: ${ task.completed? completedTaskColor : activeTaskColor}">
+                    <div class="list-row" style="background-color: ${task.completed ? completedTaskColor : activeTaskColor}">
                         <div class="task-details"> 
                             <div class="task-title">
                             </div>
                             <div class="task-desc">
-                                ${editTaskFlag && editTaskID === task.id ? 
-                                `<textarea onkeyup="getChar(0)" onblur="editDone()" maxlength ="200" onkeypress="editing(event)" name="editTask" id="editTask" rows="3">${task.title}</textarea>
+                                ${editTaskFlag && editTaskID === task.id ?
+                    `<textarea onkeyup="getChar(0)" onblur="editDone()" maxlength ="200" onkeypress="editing(event)" name="editTask" id="editTask" rows="3">${task.title}</textarea>
                                 </div>
                                 <div class="data-length"> ${task.title.slice().length}/200 </div>`
-                                : task.title + '</div>'
-                                }                           
+                    : task.title + '</div>'
+                }                           
                             
                         </div>
                         <div class="list-bottom">
                             <div class="task-activation">
                                 <label class="switch">
-                                    <input type="checkbox" name="activechk" id="activechk" onclick="tickComplete(${task.id})" ${task.completed? 'checked' : ''}>
+                                    <input type="checkbox" name="activechk" id="activechk" onclick="tickComplete(${task.id})" ${task.completed ? 'checked' : ''}>
                                     <span class="slider"></span>
                                 </label>
                             </div>
@@ -145,24 +146,24 @@ const displayTasks = function (tasks) {
                         </div>
                     </div>`;
 
-                    const specificTask = `
-                    <div class="list-row" style="background-color: ${ task.completed? completedTaskColor : activeTaskColor}">
+            const specificTask = `
+                    <div class="list-row" style="background-color: ${task.completed ? completedTaskColor : activeTaskColor}">
                         <div class="task-details"> 
                             <div class="task-title">
                             </div>
                             <div class="task-desc">
-                                ${editTaskFlag && editTaskID === task.id ? 
-                                `<textarea onkeyup="getChar(1)" onblur="editDone()" maxlength ="200" onkeypress="editing(event)" name="editTask" id="editTask" rows="3">${task.title}</textarea>
+                                ${editTaskFlag && editTaskID === task.id ?
+                    `<textarea onkeyup="getChar(1)" onblur="editDone()" maxlength ="200" onkeypress="editing(event)" name="editTask" id="editTask" rows="3">${task.title}</textarea>
                                 </div>
                                 <div class="data-length"> ${task.title.slice().length}/200 </div>`
-                                : task.title + '</div>'
-                                }                           
+                    : task.title + '</div>'
+                }                           
                             
                         </div>
                         <div class="list-bottom">
                             <div class="task-activation">
                                 <label class="switch">
-                                    <input type="checkbox" name="activechk" id="activechk" onclick="tickComplete(${task.id})" ${task.completed? 'checked' : ''}>
+                                    <input type="checkbox" name="activechk" id="activechk" onclick="tickComplete(${task.id})" ${task.completed ? 'checked' : ''}>
                                     <span class="slider"></span>
                                 </label>
                             </div>
@@ -173,13 +174,13 @@ const displayTasks = function (tasks) {
                         </div>
                     </div>`;
             containerAllTask.insertAdjacentHTML('beforeend', allTask);
-            task.completed ? containerCompletedTask.insertAdjacentHTML('beforeend', specificTask) 
-            : containerActiveTask.insertAdjacentHTML('beforeend', specificTask);
-            
-        });        
+            task.completed ? containerCompletedTask.insertAdjacentHTML('beforeend', specificTask)
+                : containerActiveTask.insertAdjacentHTML('beforeend', specificTask);
+
+        });
     }
 
-    
+
 };
 
 displayTasks(tasks);
@@ -204,7 +205,7 @@ btnAdd.addEventListener('click', function () {
 });
 
 btnSearch.addEventListener('click', function () {
-    // inputBox.disabled = false;
+
     inputBox.placeholder = 'Serach Task';
     editTaskFlag = false;
     activeBtn = 1;
@@ -213,8 +214,8 @@ btnSearch.addEventListener('click', function () {
 
     if (inputBox.value.trim()) {
         const data = inputBox.value;
-        const searched = tasks.filter(t => t.title.toLowerCase().includes(data.toLowerCase()));
-        displayTasks(searched);
+        searchTasks = tasks.filter(t => t.title.toLowerCase().includes(data.toLowerCase()));
+        displayTasks(searchTasks);
     } else {
         displayTasks(tasks);
     }
@@ -229,7 +230,7 @@ inputBox.addEventListener('keyup', function (event) {
         btnSearch.click();
 });
 
-const tickComplete = function(taskID) {
+const tickComplete = function (taskID) {
     editTaskFlag = false;
     const index = tasks.findIndex(t => t.id === taskID);
     tasks[index].completed = !tasks[index].completed;
@@ -239,11 +240,11 @@ const tickComplete = function(taskID) {
 const deleteTask = function (taskID) {
     editTaskFlag = false;
     const index = tasks.findIndex(t => t.id === taskID);
-    tasks.splice(index,1);
+    tasks.splice(index, 1);
     displayTasks(tasks);
 }
 
-const editTask = function(taskID,i,disable) {
+const editTask = function (taskID, i, disable) {
     editTaskFlag = true;
     editTaskID = taskID;
     displayTasks(tasks);
@@ -253,16 +254,16 @@ const editTask = function(taskID,i,disable) {
     box[disable].disabled = true;
 };
 
-const editing = function(event){
+const editing = function (event) {
     if (event.key === "Enter") {
         editDone();
     }
 }
 
-const editDone = function() {
+const editDone = function () {
     const index = tasks.findIndex(t => t.id === editTaskID);
 
-    if(tasks[index].title !== 'undefined'){
+    if (tasks[index].title !== 'undefined') {
         tasks[index].title = editFromBox === 0 ? box[0].value : box[1].value;
     } else {
         tasks[index].title = editFromBox === 0 ? box[0].value : box[1].value;
@@ -295,7 +296,7 @@ filterBtnCancel.addEventListener('click', () => {
     selectAction.selectedIndex = selectOpt;
     selectSort.selectedIndex = sortOpt;
 
-    console.log(selectOpt , sortOpt);
+    console.log(selectOpt, sortOpt);
     taskAction();
     const newTasks = taskSort();
     displayTasks(newTasks);
@@ -309,11 +310,16 @@ filterBtnReset.addEventListener('click', () => {
     selectAction.selectedIndex = selectOpt;
     selectSort.selectedIndex = sortOpt;
 
-    console.log(selectOpt , sortOpt);
+    console.log(selectOpt, sortOpt);
     taskAction();
     const newTasks = taskSort();
     displayTasks(newTasks);
 });
+
+const selectAll = function (task) {
+    task.forEach(t => t.completed = true);
+}
+const unselectAll = (task) => task.forEach(t => t.completed = false) 
 
 const taskAction = function () {
     const opt = selectAction.options[selectOpt].value;
@@ -329,11 +335,17 @@ const taskAction = function () {
             break;
         }
         case 2: {
-            tasks.forEach(t => t.completed = true);
+            if (activeBtn === 1) {
+                if (inputBox.value != '')  selectAll(searchTasks);
+                else   selectAll(tasks);
+            } else  selectAll(tasks);
             break;
         }
         case 3: {
-            tasks.forEach(t => t.completed = false);
+            if (activeBtn === 1) {
+                if (inputBox.value != '') unselectAll(searchTasks);
+                else unselectAll(tasks);
+            } else unselectAll(tasks);      
             break;
         }
         default: { };
