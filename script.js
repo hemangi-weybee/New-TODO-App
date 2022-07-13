@@ -316,10 +316,9 @@ filterBtnReset.addEventListener('click', () => {
     displayTasks(newTasks);
 });
 
-const selectAll = function (task) {
-    task.forEach(t => t.completed = true);
-}
-const unselectAll = (task) => task.forEach(t => t.completed = false) 
+const selectAll = (task) => task.forEach(t => t.completed = true);
+
+const unselectAll = (task) => task.forEach(t => t.completed = false);
 
 const taskAction = function () {
     const opt = selectAction.options[selectOpt].value;
