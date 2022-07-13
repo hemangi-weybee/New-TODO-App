@@ -323,7 +323,6 @@ const unselectAll = (task) => task.forEach(t => t.completed = false);
 const taskAction = function () {
     const opt = selectAction.options[selectOpt].value;
 
-    // selectAction.selectedIndex = 0;
     switch (Number(opt)) {
         case 1: {
             tasks.filter(t => t.completed === true)
