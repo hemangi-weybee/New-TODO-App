@@ -131,6 +131,9 @@ section .container .comman-task .task-list .list-row {
 section .container .comman-task .task-list .list-row .task-title {
   margin: 5px 0px;
 }
+section .container .comman-task .task-list .list-row .task-desc {
+  overflow: anywhere;
+}
 section .container .comman-task .task-list .list-row .task-desc textarea {
   padding: 5px;
   resize: none;
